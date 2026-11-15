@@ -2,10 +2,10 @@
 import random
 
 CHARACTERS = [
-    "Miss Scarlet",
+    "Miss Scarlett",
     "Colonel Mustard",
     "Mrs. White",
-    "Mr. Green",
+    "Reverend Green",
     "Mrs. Peacock",
     "Professor Plum",
 ]
