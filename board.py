@@ -103,48 +103,7 @@ for r, row in enumerate(GRID):
         if ch.islower() and ch.upper() in ROOMS:
             DOORS_TO_ROOM[(r, c)] = ROOMS[ch.upper()]
 
-""""Player movement options throughout the board."""
-STEPS = {"up": (-1, 0), "down": (1, 0), "left": (0, -1), "right": (0, 1)}
-
-def neighbors(pos):
-    """"Calculate the neighbors positions that ar valid.
-        Players can walk one step either into a hallway or door."""
-    valid_neighbors = []
-    r, c = pos
-    for dr, dc in STEPS.values():
-        nr, nc = r + dr, c + dr
-        if (0 <= nr < ROWS and 
-            0 <= nc < COLS and 
-            (GRID[nr][nc] == "·" or 
-            GRID[nr][nc] in START_SQUARES or 
-            (nr, nc) in DOORS_TO_ROOM)):
-            valid_neighbors.append((nr, nc))
-    return valid_neighbors
-
-def moves_from_square(pos):
-    """Valid hallway cooridnates or doorways to enter."""
-    moves = []
-    for n in neighbors(pos):
-        if n in DOORS_TO_ROOM:
-            moves.append(DOORS_TO_ROOM[n]) # name of door to enter
-        else:
-            moves.append(n) # hallway coordinate
-    return moves
-
-def moves_from_room(room):
-    """Valid coordinates to leave room."""
-    moves = []
-    for door, name in DOORS_TO_ROOM.items():
-        if name == room:
-            for n in neighbors(door):
-                if n not in DOORS_TO_ROOM:
-                    moves.append(n)
-    return moves
-
-def move_from_secret_passage(room):
-    """If can move through secret passage return destination room name."""
-    return SECRET_PASSAGES.get(room)
- 
+# ---------------------------- RENDER HELPERS ---------------------------------------------------
 def dot(character):
     """A coloured dot for this character."""
     # Text color: \033[38;5;...\033[0m]
