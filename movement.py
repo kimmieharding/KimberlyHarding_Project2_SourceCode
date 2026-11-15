@@ -47,10 +47,8 @@ def move_from_secret_passage(room):
 
 def step_from(position, direction):
     """Check movement from one square - to be called in movement()"""
-    r, c = position
     dr, dc = STEPS[direction]
-    target = (r + dr, c + dc)
-    target = DOORS_TO_ROOM.get(target, target)
-    if target in moves_from_square(position):
-        return target
-    return None
+    target = (position[0] + dr, position[1] + dc)
+    if target not in neighbors(position):
+        return None
+    return DOORS_TO_ROOM.get(target, target)
