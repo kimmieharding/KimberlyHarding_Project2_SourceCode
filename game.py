@@ -67,11 +67,11 @@ class Game:
         # 1. Optional: Move through Secret Passage if available
         if isinstance(player.position, str): #Indicates location is a room - not a coordinate
             destination = move_from_secret_passage(player.position)
-            if destination and ask_yes_no("Use secret passage to {destination}? (y/n) "):
+            if destination and ask_yes_no(f"Use secret passage to {destination}? (y/n) "):
                 player.position = destination
                 self.make_suggestion(player) #Must make a suggestion when entering new room
-                if ask_yes_no("Would you like to make an accusation? (y/n) "):
-                    self.make_accusation(player)
+                # if ask_yes_no("Would you like to make an accusation? (y/n) "):
+                #     self.make_accusation(player)
                 if not self.over:
                     self.show_board()
                 return
@@ -131,6 +131,8 @@ class Game:
                 print(f"You entered the {new_pos}.")
             else: 
                 visited.add(new_pos)
+
+            self.show_board() #Show character token moving across board for every step
 
         return entered
 
