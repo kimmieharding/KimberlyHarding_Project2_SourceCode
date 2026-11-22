@@ -8,7 +8,7 @@ def main():
     print("Kimberly Harding CS670 Project 2")
     print("Welcome to Cluedo")
 
-    if not ask_yes_no("Would you like ot play? (y/n) "):
+    if not ask_yes_no("Would you like to play? (y/n) "):
         print("Goodbye!")
         return
 
