@@ -1,9 +1,29 @@
- clue/
- ├── board.py    # the mansion layout
- ├── cards.py    # CHARACTERS, WEAPONS, ROOMS, plus solution and dealing
- ├── player.py   
- ├── game.py     
- └── main.py    
+ # Kimberly Harding CS670 Project 2 Cluedo Game
 
- Board is inspired from the following image
+ ## Cloning the Repository: Using HTTPS
+''' 
+    # Navigate to the location you want to upload repo
+    cd path/to/folder 
+
+    # Clone the repository using the URL
+     git clone https://github.com/kimmieharding/KimberlyHarding_Project2_SourceCode.git
+
+    # locate the folder
+    cd KimberlyHarding_Project2_SourceCode
+'''
+
+ ## Running the Game
+ ''' python main.py '''
+
+ ## Repository Structure
+ clue/
+ ├── board.py  # the mansion layout and rendering the board
+ ├── cards.py  # CHARACTERS, WEAPONS, ROOMS, plus solution and dealing
+ ├── game.py # initializing the game, taking turns, and making suggestions
+ ├── player.py # class for player object: hand, character, eliminated, etc.
+ ├── movement.py # locating valid locations, moving from secret passages and rooms
+ |── utils.py # Helpers for printing options and prompt to command line
+ └── main.py #Run the game: python main.py
+
+ **Board is inspired from the following image**
  https://i.pinimg.com/736x/36/63/dd/3663ddb1e8b96771a46c6026eccca804.jpg 
