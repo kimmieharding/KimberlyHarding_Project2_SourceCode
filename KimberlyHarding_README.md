@@ -20,7 +20,7 @@ python main.py
 # Example output
 Kimberly Harding CS670 Project 2
 Welcome to Cluedo
-Would you like ot play? (y/n)
+Would you like to play? (y/n)
 ```
 
  ## Repository Structure
