@@ -1,7 +1,6 @@
 """Movement helper functions: lovating valid squares, moving from rooms, secret passages, etc."""
 
-from board import (GRID, ROWS, COLS, START_SQUARES,
-                   DOORS_TO_ROOM, SECRET_PASSAGES)
+from board import (GRID, ROWS, COLS, START_SQUARES, DOORS_TO_ROOM, SECRET_PASSAGES)
 
 """"Player movement options throughout the board."""
 STEPS = {"up": (-1, 0), "down": (1, 0), "left": (0, -1), "right": (0, 1)}
@@ -13,12 +12,12 @@ def neighbors(pos):
     r, c = pos
     for dr, dc in STEPS.values():
         nr, nc = r + dr, c + dc
-        if (0 <= nr < ROWS and 
-            0 <= nc < COLS and 
-            (GRID[nr][nc] == "·" or 
-            GRID[nr][nc] in START_SQUARES or 
-            (nr, nc) in DOORS_TO_ROOM)):
-            valid_neighbors.append((nr, nc))
+        if (0 <= nr < ROWS and #within row length
+            0 <= nc < COLS and  #within column length
+            (GRID[nr][nc] == "·" or # open coordinate
+            GRID[nr][nc] in START_SQUARES or # or staring location
+            (nr, nc) in DOORS_TO_ROOM)): # or door to room
+            valid_neighbors.append((nr, nc)) #add valid neighbors
     return valid_neighbors
 
 def moves_from_square(pos):
