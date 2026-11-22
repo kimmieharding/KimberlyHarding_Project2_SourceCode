@@ -3,11 +3,12 @@
 Legend 
     S H L B R D C A K Room squares
     s h l b r d c a k Door squares
-    X                 Cellular
+    X                 Cellular/Cluedo Logo
     .                 Hallway
     1-6               Character start squares
 """
 
+"""Outline of the grid - adapted from image in README.md"""
 GRID = [
     "SSSSSSS··HHHHHH·1LLLLLLL", 
     "SSSSSSS··HHHHHH··LLLLLLL",
@@ -93,20 +94,20 @@ TOKEN_COLORS = {
 START_POSITIONS = {}
 for r, row in enumerate(GRID):
     for c, ch in enumerate(row):
-        if ch in START_SQUARES:
+        if ch in START_SQUARES: #if the character is a number then save coordinates
             START_POSITIONS[START_SQUARES[ch]] = (r, c)
 
 """Coordinates for each room on the board."""
 DOORS_TO_ROOM = {}
 for r, row in enumerate(GRID):
     for c, ch in enumerate(row):
-        if ch.islower() and ch.upper() in ROOMS:
-            DOORS_TO_ROOM[(r, c)] = ROOMS[ch.upper()]
+        if ch.islower() and ch.upper() in ROOMS: #if character is lowercase and the uppercase is saved in ROOMS
+            DOORS_TO_ROOM[(r, c)] = ROOMS[ch.upper()] #Coordinates associated with ROOM name
 
 # ---------------------------- RENDER HELPERS ---------------------------------------------------
 def dot(character):
     """A coloured dot for this character."""
-    # Text color: \033[38;5;...\033[0m]
+    # Text color: \033[38;5;...m\uc25cf\033[39m]
     return f"\033[38;5;{TOKEN_COLORS[character]}m\u25cf\033[39m"
 
 def render(tokens=None):
@@ -119,12 +120,10 @@ def render(tokens=None):
         for c, grid_ch in enumerate(row):
             ch = grid_ch
             if (r, c) in tokens: # indicating a players location
-                ch = tokens[(r, c)]
+                ch = tokens[(r, c)] #Set to color of charcater token
             elif ch.islower(): # indicating a door positon
-                ch = "+"
-            elif ch in START_SQUARES:
-                ch = "·"
-            cell = ch + " "
+                ch = "+" 
+            cell = ch + " " # character & space for better display
             if grid_ch.upper() in ROOM_COLORS: # indicating a room - color code the background
                 cell = f"\033[48;5;{ROOM_COLORS[grid_ch.upper()]};38;5;231m{cell}\033[0m"
             squares.append(cell)
